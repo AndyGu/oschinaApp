@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,6 +18,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.nineoldandroids.view.ViewHelper;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
@@ -225,11 +228,37 @@ public class NavigationDrawerFragment extends BaseFragment implements
                 null, R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close) {
 
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                Log.e("onDrawerSlide","drawerView.getTag()="+drawerView.getTag()+" slideOffset="+slideOffset);
+                View mContent = mDrawerLayout.getChildAt(0);
+                View mMenu = drawerView;
+                float scale = 1 - slideOffset;
+                float rightScale = 0.8f + scale * 0.2f;
+
+                    float leftScale = 1 - 0.3f * scale;
+
+                    ViewHelper.setScaleX(mMenu, leftScale);
+                    ViewHelper.setScaleY(mMenu, leftScale);
+                    ViewHelper.setAlpha(mMenu, 0.6f + 0.4f * (1 - scale));
+                    ViewHelper.setTranslationX(mContent,
+                            mMenu.getMeasuredWidth() * (1 - scale));
+                    ViewHelper.setPivotX(mContent, 0);
+                    ViewHelper.setPivotY(mContent,
+                            mContent.getMeasuredHeight() / 2);
+                    mContent.invalidate();
+                    ViewHelper.setScaleX(mContent, rightScale);
+                    ViewHelper.setScaleY(mContent, rightScale);
+//                super.onDrawerSlide(drawerView, slideOffset);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
                 getActivity().invalidateOptionsMenu();
             }
 
+            @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 getActivity().invalidateOptionsMenu();
