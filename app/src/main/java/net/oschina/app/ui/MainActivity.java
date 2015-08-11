@@ -253,6 +253,7 @@ public class MainActivity extends ActionBarActivity implements
             TextView title = (TextView) indicator.findViewById(R.id.tab_title);
             Drawable drawable = this.getResources().getDrawable(
                     mainTab.getResIcon());
+//          设置Drawable显示在text的左、上、右、下位置。(尽管在layout中并没有声明)
             title.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null,
                     null);
             if (i == 2) {
@@ -261,13 +262,13 @@ public class MainActivity extends ActionBarActivity implements
             }
             title.setText(getString(mainTab.getResName()));
             tab.setIndicator(indicator);
-            tab.setContent(new TabContentFactory() {
-
-                @Override
-                public View createTabContent(String tag) {
-                    return new View(MainActivity.this);
-                }
-            });
+//            tab.setContent(new TabContentFactory() {
+//
+//                @Override
+//                public View createTabContent(String tag) {
+//                    return new View(MainActivity.this);
+//                }
+//            });
             mTabHost.addTab(tab, mainTab.getClz(), null);
 
             if (mainTab.equals(MainTab.ME)) {
