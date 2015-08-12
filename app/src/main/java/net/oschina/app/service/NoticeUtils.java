@@ -16,7 +16,6 @@ import java.util.HashMap;
 public class NoticeUtils {
 
     public static INoticeService sService = null;
-//    public static ITestService testService = null;
     private static HashMap<Context, ServiceBinder> sConnectionMap = new HashMap<Context, ServiceBinder>();
 
     public static boolean bindToService(Context context) {
@@ -94,7 +93,6 @@ public class NoticeUtils {
         public void onServiceConnected(ComponentName className,
                 android.os.IBinder service) {
             sService = INoticeService.Stub.asInterface(service);
-//            testService = test.Stub.asInterface(service);
             if (mCallback != null) {
                 mCallback.onServiceConnected(className, service);
             }

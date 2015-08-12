@@ -8,6 +8,7 @@ import com.loopj.android.http.RequestParams;
 import net.oschina.app.AppContext;
 import net.oschina.app.AppException;
 import net.oschina.app.api.ApiHttpClient;
+import net.oschina.app.bean.Constants;
 import net.oschina.app.bean.EventApplyData;
 import net.oschina.app.bean.NewsList;
 import net.oschina.app.bean.Report;
@@ -39,6 +40,10 @@ public class OSChinaApi {
         params.put("keep_login", 1);
         String loginurl = "action/api/login_validate";
         ApiHttpClient.post(loginurl, params, handler);
+    }
+
+    public static void openIdLogin(String s) {
+
     }
 
     /**
@@ -955,4 +960,48 @@ public class OSChinaApi {
         params.put("uuid", uuid);
         ApiHttpClient.getDirect(url, handler);
     }
+
+    /***
+     * 使用第三方登陆
+     * @param catalog 类别
+     * @param openIdInfo 第三方的info
+     * @param handler handler
+     */
+    public static void open_login(String catalog, String openIdInfo, AsyncHttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.put("catalog", catalog);
+        params.put("openid_info", openIdInfo);
+        ApiHttpClient.post("action/api/openid_login", params, handler);
+    }
+
+    /***
+     * 第三方登陆账号绑定
+     * @param catalog 类别（QQ、wechat）
+     * @param openIdInfo 第三方info
+     * @param userName 用户名
+     * @param pwd 密码
+     * @param handler handler
+     */
+    public static void bind_openid(String catalog, String openIdInfo, String userName, String pwd, AsyncHttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.put("catalog", catalog);
+        params.put("openid_info", openIdInfo);
+        params.put("username", userName);
+        params.put("pwd", pwd);
+        ApiHttpClient.post("action/api/openid_bind", params, handler);
+    }
+
+    /***
+     * 使用第三方账号注册
+     * @param catalog 类别（qq、wechat）
+     * @param openIdInfo 第三方info
+     * @param handler handler
+     */
+    public static void openid_reg(String catalog, String openIdInfo, AsyncHttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.put("catalog", catalog);
+        params.put("openid_info", openIdInfo);
+        ApiHttpClient.post("action/api/openid_reg", params, handler);
+    }
+
 }

@@ -56,7 +56,7 @@ public class NoticeService extends Service {
             if (Constants.INTENT_ACTION_NOTICE.equals(action)) {
         	Notice notice = (Notice) intent.getSerializableExtra("notice_bean");
                 int atmeCount = notice.getAtmeCount();// @我
-                int msgCount = notice.getMsgCount();// 留言
+                int msgCount = notice.getMsgCount();// 私信
                 int reviewCount = notice.getReviewCount();// 评论
                 int newFansCount = notice.getNewFansCount();// 新粉丝
                 int newLikeCount = notice.getNewLikeCount();// 点赞数
@@ -131,7 +131,7 @@ public class NoticeService extends Service {
 
     /**
      * OSC采用轮询方式实现消息推送<br>
-     * 每次被调用都去执行一次{@link AlarmReceiver}onReceive()方法
+     * 每次被调用都去执行一次{@link #AlarmReceiver}onReceive()方法
      * 
      * @return
      */
@@ -306,20 +306,4 @@ public class NoticeService extends Service {
     }
 
     private final IBinder mBinder = new ServiceStub(this);
-
-
-    private static class TestServiceStub extends ITestService.Stub {
-        WeakReference<NoticeService> mService;
-
-        TestServiceStub(NoticeService service) {
-            mService = new WeakReference<NoticeService>(service);
-        }
-
-
-        @Override
-        public void scheduleNotice() throws RemoteException {
-            mService.get().startRequestAlarm();
-        }
-
-    }
 }

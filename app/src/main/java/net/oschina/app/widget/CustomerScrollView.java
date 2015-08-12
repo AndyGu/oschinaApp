@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
@@ -16,7 +15,7 @@ import android.widget.ScrollView;
  */
 public class CustomerScrollView extends ScrollView {
 
-	private static final int size = 1;
+	private static final int size = 4;
 	private View inner;
 	private float y;
 	private Rect normal = new Rect();;
@@ -70,20 +69,16 @@ public class CustomerScrollView extends ScrollView {
 			// scrollBy(0, deltaY);
 
 			y = nowY;
-
 			if (isNeedMove()) {
 				if (normal.isEmpty()) {
-					normal.set(inner.getLeft(),
-							inner.getTop(),
-							inner.getRight(),
-							inner.getBottom());
+					normal.set(inner.getLeft(), inner.getTop(),
+							inner.getRight(), inner.getBottom());
 					return;
 				}
+				int yy = inner.getTop() - deltaY;
 
 				// 移动布局
-				inner.layout(inner.getLeft(),
-						inner.getTop() - deltaY,
-						inner.getRight(),
+				inner.layout(inner.getLeft(), yy, inner.getRight(),
 						inner.getBottom() - deltaY);
 			}
 			break;
@@ -108,8 +103,6 @@ public class CustomerScrollView extends ScrollView {
 	public boolean isNeedMove() {
 		int offset = inner.getMeasuredHeight() - getHeight();
 		int scrollY = getScrollY();
-//		scrollY==0是从上往下划过头  scrollY==offset是从下往上划过头
-		Log.e("isNeedMove", "inner.getMeasuredHeight()="+inner.getMeasuredHeight()+" getHeight()="+getHeight()+" getScrollY()="+getScrollY());
 		if (scrollY == 0 || scrollY == offset) {
 			return true;
 		}
