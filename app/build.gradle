@@ -14,20 +14,27 @@ android {
     }
 
     signingConfigs {
+        debug {
+            storeFile file("abc.jks")      //签名文件
+            storePassword "123456"
+            keyAlias "123"
+            keyPassword "123456"  //签名密码
+        }
+
         release {
-            keyAlias '123'
-            keyPassword '123456'
-            storeFile file('E:/workplace/keystore/abc.jks')
-            storePassword '123456'
+            storeFile file("abc.jks")      //签名文件
+            storePassword "123456"
+            keyAlias "123"
+            keyPassword "123456"  //签名密码
         }
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.release
         }
-        release {
+        /*release {
             signingConfig signingConfigs.release
-        }
+        }*/
     }
 
 
