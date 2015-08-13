@@ -7,7 +7,7 @@ import java.util.List;
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
 import net.oschina.app.adapter.TweetLikeAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.Constants;
 import net.oschina.app.bean.Entity;
@@ -84,7 +84,7 @@ public class TweetsLikesFragment extends BaseListFragment<TweetLike> {
 
     @Override
     protected void sendRequestData() {
-	OSChinaApi.getTweetLikeList(mHandler);
+	VGTimeApi.getTweetLikeList(mHandler);
     }
 
     @Override

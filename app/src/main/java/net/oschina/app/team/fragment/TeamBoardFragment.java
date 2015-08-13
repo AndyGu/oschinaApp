@@ -10,7 +10,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseFragment;
 import net.oschina.app.bean.SimpleBackPage;
 import net.oschina.app.team.bean.MyIssueState;
@@ -237,7 +237,7 @@ public class TeamBoardFragment extends BaseFragment {
     }
 
     private void requestData() {
-        OSChinaApi.getMyIssueState(team.getId() + "", AppContext.getInstance()
+        VGTimeApi.getMyIssueState(team.getId() + "", AppContext.getInstance()
                 .getLoginUid() + "", new AsyncHttpResponseHandler() {
 
             @Override
@@ -253,7 +253,8 @@ public class TeamBoardFragment extends BaseFragment {
 
             @Override
             public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-                    Throwable arg3) {}
+                                  Throwable arg3) {
+            }
 
             @Override
             public void onFinish() {

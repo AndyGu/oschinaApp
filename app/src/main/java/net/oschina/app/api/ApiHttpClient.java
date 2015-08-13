@@ -16,6 +16,8 @@ import com.loopj.android.http.RequestParams;
 
 public class ApiHttpClient {
 
+    public final static String VGTIME_HOST = "http://121.40.207.181/game_time/api/game/%s";
+
     public final static String HOST = "www.oschina.net";
     private static String API_URL = "http://www.oschina.net/%s";
 //     public final static String HOST = "192.168.1.11";
@@ -57,8 +59,21 @@ public class ApiHttpClient {
                 .append(params).toString());
     }
 
+    public static void VGget(String partUrl, RequestParams params,
+                           AsyncHttpResponseHandler handler) {
+        client.get(getVGAbsoluteApiUrl(partUrl), params, handler);
+        log(new StringBuilder("GET ").append(partUrl).append("&")
+                .append(params).toString());
+    }
+
     public static String getAbsoluteApiUrl(String partUrl) {
         String url = String.format(API_URL, partUrl);
+        Log.d("BASE_CLIENT", "request:" + url);
+        return url;
+    }
+
+    public static String getVGAbsoluteApiUrl(String partUrl) {
+        String url = String.format(VGTIME_HOST, partUrl);
         Log.d("BASE_CLIENT", "request:" + url);
         return url;
     }

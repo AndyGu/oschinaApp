@@ -8,9 +8,8 @@ import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseActivity;
 import net.oschina.app.bean.LoginUserBean;
 import net.oschina.app.bean.OpenIdCatalog;
@@ -95,7 +94,7 @@ public class LoginBindActivityChooseActivity extends BaseActivity {
 
     private void to_reg() {
         final ProgressDialog waitDialog = DialogHelp.getWaitDialog(this, "加载中...");
-        OSChinaApi.openid_reg(catalog, openIdInfo, new AsyncHttpResponseHandler() {
+        VGTimeApi.openid_reg(catalog, openIdInfo, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 try {

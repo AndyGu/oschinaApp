@@ -13,7 +13,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import net.oschina.app.R;
 import net.oschina.app.adapter.FindUserAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseActivity;
 import net.oschina.app.bean.FindUserList;
 import net.oschina.app.bean.ListEntity;
@@ -101,7 +101,7 @@ public class FindUserActivity extends BaseActivity implements AdapterView.OnItem
         }
         mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
         mListView.setVisibility(View.GONE);
-        OSChinaApi.findUser(nickName, mHandle);
+        VGTimeApi.findUser(nickName, mHandle);
     }
 
     @Override

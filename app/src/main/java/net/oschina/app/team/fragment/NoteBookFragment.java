@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseFragment;
 import net.oschina.app.bean.NotebookData;
 import net.oschina.app.bean.NotebookDataList;
@@ -338,15 +338,16 @@ public class NoteBookFragment extends BaseFragment implements
         final int noteId = datas.get(index).getId();
         // 只有是登录用户才执行网络请求
         if (user.getId() > 0) {
-            OSChinaApi.deleteNoteBook(noteId, user.getId(),
+            VGTimeApi.deleteNoteBook(noteId, user.getId(),
                     new AsyncHttpResponseHandler() {
                         @Override
                         public void onSuccess(int arg0, Header[] arg1,
-                                byte[] arg2) {}
+                                              byte[] arg2) {
+                        }
 
                         @Override
                         public void onFailure(int arg0, Header[] arg1,
-                                byte[] arg2, Throwable arg3) {
+                                              byte[] arg2, Throwable arg3) {
                             AppContext.showToast("网络异常,云端文件暂未删除");
                         }
                     });

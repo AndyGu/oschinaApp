@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import net.oschina.app.adapter.SoftwareAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.Entity;
 import net.oschina.app.bean.ListEntity;
@@ -59,7 +59,7 @@ public class SoftwareListFragment extends BaseListFragment<SoftwareDec> {
 
     @Override
     protected void sendRequestData() {
-	OSChinaApi.getSoftwareList(softwareType, mCurrentPage, mHandler);
+	VGTimeApi.getSoftwareList(softwareType, mCurrentPage, mHandler);
     }
 
     @Override

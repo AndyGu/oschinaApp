@@ -20,7 +20,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseFragment;
 import net.oschina.app.bean.MyInformation;
 import net.oschina.app.bean.Result;
@@ -217,7 +217,7 @@ public class MyInformationFragmentDetail extends BaseFragment {
 
     public void sendRequiredData() {
         mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
-        OSChinaApi.getMyInformation(AppContext.getInstance().getLoginUid(),
+        VGTimeApi.getMyInformation(AppContext.getInstance().getLoginUid(),
                 mHandler);
     }
 
@@ -237,7 +237,7 @@ public class MyInformationFragmentDetail extends BaseFragment {
         if (protraitBitmap != null) {
 
             try {
-                OSChinaApi.updatePortrait(AppContext.getInstance()
+                VGTimeApi.updatePortrait(AppContext.getInstance()
                                 .getLoginUid(), protraitFile,
                         new AsyncHttpResponseHandler() {
 

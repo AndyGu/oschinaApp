@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 
 import net.oschina.app.AppContext;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.team.adapter.TeamIssueAdapter;
 import net.oschina.app.team.bean.Team;
@@ -79,7 +79,7 @@ public class MyIssueFragment extends BaseListFragment<TeamIssue> {
 
     @Override
     protected void sendRequestData() {
-        OSChinaApi.getMyIssue(mTeam.getId() + "", AppContext.getInstance()
+        VGTimeApi.getMyIssue(mTeam.getId() + "", AppContext.getInstance()
                 .getLoginUid() + "", mCurrentPage, type, mHandler);
     }
 

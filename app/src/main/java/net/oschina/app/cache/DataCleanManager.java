@@ -81,7 +81,7 @@ public class DataCleanManager {
 	
 	/**
 	 * 清除自定义路径下的文件，使用需小心，请不要误删。而且只支持目录下的文件删除
-	 * @param filePath
+	 * @param file
 	 */
 	public static void cleanCustomCache(File file) {
 		deleteFilesByDirectory(file);

@@ -19,7 +19,7 @@ import net.oschina.app.AppContext;
 import net.oschina.app.R;
 import net.oschina.app.adapter.CommentAdapter;
 import net.oschina.app.api.OperationResponseHandler;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseActivity;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.BlogCommentList;
@@ -178,9 +178,9 @@ public class CommentFrament extends BaseListFragment<Comment> implements
     @Override
     protected void sendRequestData() {
         if (mIsBlogComment) {
-            OSChinaApi.getBlogCommentList(mId, mCurrentPage, mHandler);
+            VGTimeApi.getBlogCommentList(mId, mCurrentPage, mHandler);
         } else {
-            OSChinaApi.getCommentList(mId, mCatalog, mCurrentPage, mHandler);
+            VGTimeApi.getCommentList(mId, mCatalog, mCurrentPage, mHandler);
         }
     }
 
@@ -202,12 +202,12 @@ public class CommentFrament extends BaseListFragment<Comment> implements
         }
         AppContext.showToastShort(R.string.deleting);
         if (mIsBlogComment) {
-            OSChinaApi.deleteBlogComment(
+            VGTimeApi.deleteBlogComment(
                     AppContext.getInstance().getLoginUid(), mId,
                     comment.getId(), comment.getAuthorId(), mOwnerId,
                     new DeleteOperationResponseHandler(comment));
         } else {
-            OSChinaApi
+            VGTimeApi
                     .deleteComment(mId, mCatalog, comment.getId(),
                             comment.getAuthorId(),
                             new DeleteOperationResponseHandler(comment));
@@ -294,10 +294,10 @@ public class CommentFrament extends BaseListFragment<Comment> implements
     private void sendReply(String text) {
         showWaitDialog(R.string.progress_submit);
         if (mIsBlogComment) {
-            OSChinaApi.publicBlogComment(mId, AppContext.getInstance()
+            VGTimeApi.publicBlogComment(mId, AppContext.getInstance()
                     .getLoginUid(), text, mCommentHandler);
         } else {
-            OSChinaApi.publicComment(mCatalog, mId, AppContext.getInstance()
+            VGTimeApi.publicComment(mCatalog, mId, AppContext.getInstance()
                     .getLoginUid(), text, 1, mCommentHandler);
         }
     }
@@ -309,12 +309,12 @@ public class CommentFrament extends BaseListFragment<Comment> implements
             return;
         }
         if (mIsBlogComment) {
-            OSChinaApi.replyBlogComment(mId, AppContext.getInstance()
+            VGTimeApi.replyBlogComment(mId, AppContext.getInstance()
                     .getLoginUid(), text, comment.getId(), comment
                     .getAuthorId(), mCommentHandler);
         } else {
-            OSChinaApi.replyComment(mId, mCatalog, comment.getId(), comment
-                    .getAuthorId(), AppContext.getInstance().getLoginUid(),
+            VGTimeApi.replyComment(mId, mCatalog, comment.getId(), comment
+                            .getAuthorId(), AppContext.getInstance().getLoginUid(),
                     text, mCommentHandler);
         }
     }

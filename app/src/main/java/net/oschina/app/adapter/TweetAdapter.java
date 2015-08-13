@@ -20,7 +20,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.ListBaseAdapter;
 import net.oschina.app.bean.Tweet;
 import net.oschina.app.emoji.InputHelper;
@@ -199,7 +199,7 @@ public class TweetAdapter extends ListBaseAdapter<Tweet> {
             if (!tweet.getLikeUser().isEmpty()) {
                 tweet.getLikeUser().remove(0);
             }
-            OSChinaApi.pubUnLikeTweet(tweet.getId(), tweet.getAuthorid(),
+            VGTimeApi.pubUnLikeTweet(tweet.getId(), tweet.getAuthorid(),
                     handler);
             vh.tvLikeState.setTextColor(AppContext.getInstance().getResources().getColor(R.color.gray));
         } else {
@@ -207,7 +207,7 @@ public class TweetAdapter extends ListBaseAdapter<Tweet> {
             vh.tvLikeState
                     .setAnimation(KJAnimations.getScaleAnimation(1.5f, 300));
             tweet.getLikeUser().add(0, AppContext.getInstance().getLoginUser());
-            OSChinaApi
+            VGTimeApi
                     .pubLikeTweet(tweet.getId(), tweet.getAuthorid(), handler);
             vh.tvLikeState.setTextColor(AppContext.getInstance().getResources().getColor(R.color.day_colorPrimary));
             tweet.setIsLike(1);
@@ -222,7 +222,7 @@ public class TweetAdapter extends ListBaseAdapter<Tweet> {
         DialogHelp.getConfirmDialog(context, "确定删除吗?", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                OSChinaApi.deleteTweet(tweet.getAuthorid(), tweet.getId(),
+                VGTimeApi.deleteTweet(tweet.getAuthorid(), tweet.getId(),
                         new AsyncHttpResponseHandler() {
                             @Override
                             public void onSuccess(int arg0, Header[] arg1,

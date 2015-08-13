@@ -1,6 +1,6 @@
 package net.oschina.app.fragment;
 
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.CommonDetailFragment;
 import net.oschina.app.bean.CommentList;
 import net.oschina.app.bean.FavoriteList;
@@ -25,7 +25,7 @@ public class NewsDetailFragment extends CommonDetailFragment<News> {
 
     @Override
     protected void sendRequestDataForNet() {
-        OSChinaApi.getNewsDetail(mId, mDetailHeandler);
+        VGTimeApi.getNewsDetail(mId, mDetailHeandler);
     }
 
     @Override

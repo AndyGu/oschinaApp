@@ -9,7 +9,7 @@ import android.support.v7.app.AlertDialog;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import net.oschina.app.AppContext;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.bean.Update;
 
 import org.apache.http.Header;
@@ -77,7 +77,7 @@ public class UpdateManager {
         if (isShow) {
             showCheckDialog();
         }
-        OSChinaApi.checkUpdate(mCheckUpdateHandle);
+        VGTimeApi.checkUpdate(mCheckUpdateHandle);
     }
 
     private void onFinshCheck() {

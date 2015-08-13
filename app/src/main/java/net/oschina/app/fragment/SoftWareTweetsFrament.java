@@ -8,7 +8,7 @@ import net.oschina.app.AppContext;
 import net.oschina.app.R;
 import net.oschina.app.adapter.TweetAdapter;
 import net.oschina.app.api.OperationResponseHandler;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseActivity;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.Result;
@@ -92,7 +92,7 @@ public class SoftWareTweetsFrament extends BaseListFragment<Tweet> implements
 
     @Override
     protected void sendRequestData() {
-        OSChinaApi.getSoftTweetList(mId, mCurrentPage, mHandler);
+        VGTimeApi.getSoftTweetList(mId, mCurrentPage, mHandler);
     }
 
     @Override

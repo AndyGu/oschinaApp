@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseFragment;
 import net.oschina.app.cache.CacheManager;
 import net.oschina.app.team.adapter.TeamMemberAdapter;
@@ -145,7 +145,7 @@ public class TeamMemberFragment extends BaseFragment {
             setSwipeRefreshLoadedState();
             return;
         }
-        OSChinaApi.getTeamMemberList(team.getId(),
+        VGTimeApi.getTeamMemberList(team.getId(),
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onStart() {
@@ -158,7 +158,7 @@ public class TeamMemberFragment extends BaseFragment {
 
                     @Override
                     public void onSuccess(int arg0, Header[] arg1,
-                            final byte[] arg2) {
+                                          final byte[] arg2) {
                         KJAsyncTask.execute(new Runnable() {
                             @Override
                             public void run() {
@@ -190,7 +190,7 @@ public class TeamMemberFragment extends BaseFragment {
 
                     @Override
                     public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-                            Throwable arg3) {
+                                          Throwable arg3) {
                         AppContext.showToast("成员信息获取失败");
                         if (isFirst) {
                             mEmpty.setErrorType(EmptyLayout.NETWORK_ERROR);

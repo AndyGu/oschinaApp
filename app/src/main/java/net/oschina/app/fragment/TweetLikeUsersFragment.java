@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import net.oschina.app.adapter.TweetLikeUsersAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseActivity;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.TweetLikeUserList;
@@ -61,7 +61,7 @@ public class TweetLikeUsersFragment extends BaseListFragment<User> {
     @Override
     protected void sendRequestData() {
         // TODO Auto-generated method stub
-	OSChinaApi.getTweetLikeList(mCatalog, mCurrentPage, mHandler);
+	VGTimeApi.getTweetLikeList(mCatalog, mCurrentPage, mHandler);
     }
     
     @Override

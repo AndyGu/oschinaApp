@@ -9,7 +9,7 @@ import android.widget.EditText;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseActivity;
 import net.oschina.app.bean.LoginUserBean;
 import net.oschina.app.util.DialogHelp;
@@ -81,7 +81,7 @@ public class LoginAccountBindOpenIdActivity extends BaseActivity {
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
         final ProgressDialog waitDialog = DialogHelp.getWaitDialog(this, "加载中...");
-        OSChinaApi.bind_openid(catalog, openIdInfo, username, password, new AsyncHttpResponseHandler() {
+        VGTimeApi.bind_openid(catalog, openIdInfo, username, password, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 LoginUserBean loginUserBean = XmlUtils.toBean(LoginUserBean.class, responseBody);

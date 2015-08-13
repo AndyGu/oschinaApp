@@ -5,11 +5,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.oschina.app.AppContext;
 import net.oschina.app.R;
 import net.oschina.app.api.OperationResponseHandler;
-import net.oschina.app.api.remote.OSChinaApi;
-import net.oschina.app.base.ListBaseAdapter;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.bean.Comment;
 import net.oschina.app.bean.Result;
 import net.oschina.app.bean.ResultBean;
@@ -224,9 +222,9 @@ public class ServerTaskService extends IntentService {
 		getString(R.string.comment_blog),
 		getString(R.string.comment_publishing), true, false);
 
-	OSChinaApi.publicBlogComment(task.getId(), task.getUid(), task
-		.getContent(), new PublicCommentResponseHandler(
-		getMainLooper(), task, true));
+	VGTimeApi.publicBlogComment(task.getId(), task.getUid(), task
+			.getContent(), new PublicCommentResponseHandler(
+			getMainLooper(), task, true));
     }
 
     private void publicComment(final PublicCommentTask task) {
@@ -237,9 +235,9 @@ public class ServerTaskService extends IntentService {
 		getString(R.string.comment_blog),
 		getString(R.string.comment_publishing), true, false);
 
-	OSChinaApi.publicComment(task.getCatalog(), task.getId(),
-		task.getUid(), task.getContent(), task.getIsPostToMyZone(),
-		new PublicCommentResponseHandler(getMainLooper(), task, false));
+	VGTimeApi.publicComment(task.getCatalog(), task.getId(),
+			task.getUid(), task.getContent(), task.getIsPostToMyZone(),
+			new PublicCommentResponseHandler(getMainLooper(), task, false));
     }
 
     // private void publicPost(Post post) {
@@ -249,7 +247,7 @@ public class ServerTaskService extends IntentService {
     // notifySimpleNotifycation(id, getString(R.string.post_publishing),
     // getString(R.string.post_public),
     // getString(R.string.post_publishing), true, false);
-    // OSChinaApi.publicPost(post, new
+    // VGTimeApi.publicPost(post, new
     // PublicPostResponseHandler(getMainLooper(),
     // post));
     // }
@@ -261,8 +259,8 @@ public class ServerTaskService extends IntentService {
 	notifySimpleNotifycation(id, getString(R.string.tweet_publishing),
 		getString(R.string.tweet_public),
 		getString(R.string.tweet_publishing), true, false);
-	OSChinaApi.pubTweet(tweet, new PublicTweetResponseHandler(
-		getMainLooper(), tweet, KEY_TWEET));
+	VGTimeApi.pubTweet(tweet, new PublicTweetResponseHandler(
+			getMainLooper(), tweet, KEY_TWEET));
     }
 
     private void pubSoftWareTweet(final Tweet tweet, int softid) {
@@ -272,9 +270,9 @@ public class ServerTaskService extends IntentService {
 	notifySimpleNotifycation(id, getString(R.string.tweet_publishing),
 		getString(R.string.tweet_public),
 		getString(R.string.tweet_publishing), true, false);
-	OSChinaApi.pubSoftWareTweet(tweet, softid,
-		new PublicTweetResponseHandler(getMainLooper(), tweet,
-			KEY_SOFTWARE_TWEET));
+	VGTimeApi.pubSoftWareTweet(tweet, softid,
+			new PublicTweetResponseHandler(getMainLooper(), tweet,
+					KEY_SOFTWARE_TWEET));
     }
 
     private void notifySimpleNotifycation(int id, String ticker, String title,

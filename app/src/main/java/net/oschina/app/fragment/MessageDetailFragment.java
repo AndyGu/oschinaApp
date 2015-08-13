@@ -18,7 +18,7 @@ import net.oschina.app.AppContext;
 import net.oschina.app.R;
 import net.oschina.app.adapter.MessageDetailAdapter;
 import net.oschina.app.api.OperationResponseHandler;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseActivity;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.base.ListBaseAdapter;
@@ -193,7 +193,7 @@ public class MessageDetailFragment extends BaseListFragment<Comment> implements
 
     @Override
     protected void sendRequestData() {
-        OSChinaApi.getCommentList(mFid, mCatalog, mCurrentPage, mHandler);
+        VGTimeApi.getCommentList(mFid, mCatalog, mCurrentPage, mHandler);
     }
 
     @Override
@@ -264,7 +264,7 @@ public class MessageDetailFragment extends BaseListFragment<Comment> implements
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 showWaitDialog(R.string.progress_submit);
-                OSChinaApi.deleteComment(mFid,
+                VGTimeApi.deleteComment(mFid,
                         CommentList.CATALOG_MESSAGE, message.getId(),
                         message.getAuthorId(),
                         new DeleteMessageOperationHandler(message));
@@ -312,7 +312,7 @@ public class MessageDetailFragment extends BaseListFragment<Comment> implements
             return;
         }
         showWaitDialog("提交中...");
-        OSChinaApi.publicMessage(AppContext.getInstance().getLoginUid(), mFid,
+        VGTimeApi.publicMessage(AppContext.getInstance().getLoginUid(), mFid,
                 str.toString(), mPublicHandler);
     }
 

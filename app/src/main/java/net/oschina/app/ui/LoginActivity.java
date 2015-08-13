@@ -4,7 +4,7 @@ import net.oschina.app.AppConfig;
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
 import net.oschina.app.api.ApiHttpClient;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseActivity;
 import net.oschina.app.bean.Constants;
 import net.oschina.app.bean.LoginUserBean;
@@ -128,7 +128,7 @@ public class LoginActivity extends BaseActivity implements IUiListener {
         mPassword = mEtPassword.getText().toString();
 
         showWaitDialog(R.string.progress_login);
-        OSChinaApi.login(mUserName, mPassword, mHandler);
+        VGTimeApi.login(mUserName, mPassword, mHandler);
     }
 
     private final AsyncHttpResponseHandler mHandler = new AsyncHttpResponseHandler() {
@@ -326,7 +326,7 @@ public class LoginActivity extends BaseActivity implements IUiListener {
      */
     private void openIdLogin(final String catalog, final String openIdInfo) {
         final ProgressDialog waitDialog = DialogHelp.getWaitDialog(this, "登陆中...");
-        OSChinaApi.open_login(catalog, openIdInfo, new AsyncHttpResponseHandler() {
+        VGTimeApi.open_login(catalog, openIdInfo, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 LoginUserBean loginUserBean = XmlUtils.toBean(LoginUserBean.class, responseBody);

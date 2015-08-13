@@ -24,7 +24,7 @@ import net.oschina.app.AppContext;
 import net.oschina.app.R;
 import net.oschina.app.adapter.CommentAdapter;
 import net.oschina.app.api.OperationResponseHandler;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BeseHaveHeaderListFragment;
 import net.oschina.app.base.ListBaseAdapter;
 import net.oschina.app.bean.Comment;
@@ -116,7 +116,7 @@ public class TweetDetailFragment extends
 
     @Override
     protected void sendRequestData() {
-        OSChinaApi.getCommentList(mTweetId, CommentList.CATALOG_TWEET,
+        VGTimeApi.getCommentList(mTweetId, CommentList.CATALOG_TWEET,
                 mCurrentPage, mHandler);
     }
 
@@ -335,7 +335,7 @@ public class TweetDetailFragment extends
             return;
         }
         AppContext.showToastShort(R.string.deleting);
-        OSChinaApi.deleteComment(mTweetId, CommentList.CATALOG_TWEET,
+        VGTimeApi.deleteComment(mTweetId, CommentList.CATALOG_TWEET,
                 comment.getId(), comment.getAuthorId(),
                 new DeleteOperationResponseHandler(comment));
     }
@@ -384,7 +384,7 @@ public class TweetDetailFragment extends
         mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
         if (TDevice.hasInternet()
                 && (!CacheManager.isExistDataCache(getActivity(), key) || isRefresh)) {
-            OSChinaApi.getTweetDetail(mTweetId, mDetailHandler);
+            VGTimeApi.getTweetDetail(mTweetId, mDetailHandler);
         } else {
             readDetailCacheData(key);
         }
@@ -444,7 +444,7 @@ public class TweetDetailFragment extends
                 mTweet.setIsLike(0);
                 mTweet.getLikeUser().remove(0);
                 mTweet.setLikeCount(mTweet.getLikeCount() - 1);
-                OSChinaApi.pubUnLikeTweet(mTweetId, mTweet.getAuthorid(),
+                VGTimeApi.pubUnLikeTweet(mTweetId, mTweet.getAuthorid(),
                         handler);
             } else {
                 mTvLikeState.setAnimation(KJAnimations.getScaleAnimation(1.5f,
@@ -453,7 +453,7 @@ public class TweetDetailFragment extends
                 mTweet.getLikeUser().add(0,
                         AppContext.getInstance().getLoginUser());
                 mTweet.setLikeCount(mTweet.getLikeCount() + 1);
-                OSChinaApi
+                VGTimeApi
                         .pubLikeTweet(mTweetId, mTweet.getAuthorid(), handler);
             }
             setLikeState();
@@ -512,12 +512,12 @@ public class TweetDetailFragment extends
             if (outAty.emojiFragment.getEditText().getTag() != null) {
                 Comment comment = (Comment) outAty.emojiFragment.getEditText()
                         .getTag();
-                OSChinaApi.replyComment(mTweetId, CommentList.CATALOG_TWEET,
+                VGTimeApi.replyComment(mTweetId, CommentList.CATALOG_TWEET,
                         comment.getId(), comment.getAuthorId(), AppContext
                                 .getInstance().getLoginUid(), str.toString(),
                         mCommentHandler);
             } else {
-                OSChinaApi.publicComment(CommentList.CATALOG_TWEET, mTweetId,
+                VGTimeApi.publicComment(CommentList.CATALOG_TWEET, mTweetId,
                         AppContext.getInstance().getLoginUid(), str.toString(),
                         0, mCommentHandler);
             }

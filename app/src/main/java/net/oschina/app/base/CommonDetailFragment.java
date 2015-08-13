@@ -21,7 +21,7 @@ import com.loopj.android.http.TextHttpResponseHandler;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.bean.Report;
 import net.oschina.app.bean.Result;
 import net.oschina.app.bean.ResultBean;
@@ -364,10 +364,10 @@ public abstract class CommonDetailFragment<T extends Serializable> extends BaseF
         };
 
         if (isFavorited) {
-            OSChinaApi.delFavorite(uid, mId,
+            VGTimeApi.delFavorite(uid, mId,
                     getFavoriteTargetType(), mFavoriteHandler);
         } else {
-            OSChinaApi.addFavorite(uid, mId,
+            VGTimeApi.addFavorite(uid, mId,
                     getFavoriteTargetType(), mFavoriteHandler);
         }
     }
@@ -423,7 +423,7 @@ public abstract class CommonDetailFragment<T extends Serializable> extends BaseF
                         Report report = null;
                         if ((report = dialog.getReport()) != null) {
                             showWaitDialog(R.string.progress_submit);
-                            OSChinaApi.report(report, mReportHandler);
+                            VGTimeApi.report(report, mReportHandler);
                         }
                         d.dismiss();
                     }
@@ -508,7 +508,7 @@ public abstract class CommonDetailFragment<T extends Serializable> extends BaseF
         }
         showWaitDialog(R.string.progress_submit);
 
-        OSChinaApi.publicComment(getCommentType(), mId, AppContext
+        VGTimeApi.publicComment(getCommentType(), mId, AppContext
                         .getInstance().getLoginUid(), str.toString(), 0,
                 mCommentHandler);
     }

@@ -10,7 +10,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.base.CommonDetailFragment;
 import net.oschina.app.bean.CommentList;
@@ -87,7 +87,7 @@ public class EventDetailFragment extends CommonDetailFragment<Post> {
 
     @Override
     protected void sendRequestDataForNet() {
-        OSChinaApi.getPostDetail(mId, mDetailHeandler);
+        VGTimeApi.getPostDetail(mId, mDetailHeandler);
     }
 
     @Override
@@ -296,7 +296,7 @@ public class EventDetailFragment extends CommonDetailFragment<Post> {
                                 data.setUser(AppContext.getInstance()
                                         .getLoginUid());
                                 showWaitDialog(R.string.progress_submit);
-                                OSChinaApi.eventApply(data, mApplyHandler);
+                                VGTimeApi.eventApply(data, mApplyHandler);
                             }
                         }
                     });

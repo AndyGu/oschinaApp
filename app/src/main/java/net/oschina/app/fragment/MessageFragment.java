@@ -14,7 +14,7 @@ import net.oschina.app.AppContext;
 import net.oschina.app.R;
 import net.oschina.app.adapter.MessageAdapter;
 import net.oschina.app.api.OperationResponseHandler;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.Constants;
 import net.oschina.app.bean.MessageList;
@@ -142,7 +142,7 @@ public class MessageFragment extends BaseListFragment<Messages> implements
 
     @Override
     protected void sendRequestData() {
-        OSChinaApi.getMessageList(AppContext.getInstance().getLoginUid(),
+        VGTimeApi.getMessageList(AppContext.getInstance().getLoginUid(),
                 mCurrentPage, mHandler);
     }
 
@@ -195,7 +195,7 @@ public class MessageFragment extends BaseListFragment<Messages> implements
             public void onClick(DialogInterface dialogInterface, int i) {
                 showWaitDialog(R.string.progress_submit);
 
-                OSChinaApi.deleteMessage(AppContext.getInstance()
+                VGTimeApi.deleteMessage(AppContext.getInstance()
                                 .getLoginUid(), message.getFriendId(),
                         new DeleteMessageOperationHandler(message));
             }

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import net.oschina.app.adapter.NewsAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.base.ListBaseAdapter;
 import net.oschina.app.bean.News;
@@ -58,7 +58,7 @@ public class NewsFragment extends BaseListFragment<News> implements
 
     @Override
     protected void sendRequestData() {
-        OSChinaApi.getNewsList(mCatalog, mCurrentPage, mHandler);
+        VGTimeApi.getNewsList(mCatalog, mCurrentPage, mHandler);
     }
 
     @Override

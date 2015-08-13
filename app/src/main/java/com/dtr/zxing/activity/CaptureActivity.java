@@ -45,7 +45,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import net.oschina.app.AppContext;
 import net.oschina.app.AppException;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseActivity;
 import net.oschina.app.bean.BarCode;
 import net.oschina.app.bean.ResultBean;
@@ -293,7 +293,7 @@ public final class CaptureActivity extends BaseActivity implements
     }
 
     private void handleScanLogin(final String url) {
-        OSChinaApi.scanQrCodeLogin(url, new AsyncHttpResponseHandler() {
+        VGTimeApi.scanQrCodeLogin(url, new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
@@ -391,7 +391,7 @@ public final class CaptureActivity extends BaseActivity implements
                 hideWaitDialog();
             }
         };
-        OSChinaApi.singnIn(barCode.getUrl(), handler);
+        VGTimeApi.singnIn(barCode.getUrl(), handler);
     }
 
     private void showLogin() {

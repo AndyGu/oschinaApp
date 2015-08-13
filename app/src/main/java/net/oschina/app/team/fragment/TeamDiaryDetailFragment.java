@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.api.remote.OSChinaTeamApi;
 import net.oschina.app.base.BaseFragment;
 import net.oschina.app.emoji.OnSendClickListener;
@@ -198,7 +198,7 @@ public class TeamDiaryDetailFragment extends BaseFragment implements
     }
 
     private void initListData() {
-        OSChinaApi.getDiaryDetail(teamid, diaryData.getId(),
+        VGTimeApi.getDiaryDetail(teamid, diaryData.getId(),
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onStart() {
@@ -218,7 +218,7 @@ public class TeamDiaryDetailFragment extends BaseFragment implements
 
                     @Override
                     public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-                            Throwable arg3) {
+                                          Throwable arg3) {
                         mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
                         mErrorLayout.setErrorMessage("网络不好，请稍后重试");
                     }
@@ -233,11 +233,11 @@ public class TeamDiaryDetailFragment extends BaseFragment implements
     }
 
     private void initCommitLayout() {
-        OSChinaApi.getDiaryComment(teamid, diaryData.getId(),
+        VGTimeApi.getDiaryComment(teamid, diaryData.getId(),
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int arg0, Header[] arg1,
-                            final byte[] arg2) {
+                                          final byte[] arg2) {
                         List<TeamReply> datas = XmlUtils.toBean(
                                 TeamRepliesList.class, arg2).getList();
                         footerView.removeAllViews();
@@ -276,7 +276,8 @@ public class TeamDiaryDetailFragment extends BaseFragment implements
 
                     @Override
                     public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-                            Throwable arg3) {}
+                                          Throwable arg3) {
+                    }
 
                     @Override
                     public void onFinish() {

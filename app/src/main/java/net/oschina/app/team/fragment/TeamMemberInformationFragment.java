@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.team.adapter.TeamActiveAdapter;
 import net.oschina.app.team.adapter.TeamMemberAdapter;
@@ -175,7 +175,7 @@ public class TeamMemberInformationFragment extends BaseListFragment<TeamActive> 
 
     @Override
     protected void sendRequestData() {
-        OSChinaApi.getUserDynamic(teamId, teamMember.getId() + "",
+        VGTimeApi.getUserDynamic(teamId, teamMember.getId() + "",
                 mCurrentPage, mHandler);
     }
 }

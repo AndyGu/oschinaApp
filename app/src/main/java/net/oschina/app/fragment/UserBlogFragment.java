@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 
 import net.oschina.app.adapter.BlogAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.Blog;
 import net.oschina.app.bean.BlogList;
@@ -48,7 +48,7 @@ public class UserBlogFragment extends BaseListFragment<Blog> {
 
 	@Override
 	protected void sendRequestData() {
-		OSChinaApi.getUserBlogList(mCatalog, "", mCatalog, mCurrentPage, mHandler);
+		VGTimeApi.getUserBlogList(mCatalog, "", mCatalog, mCurrentPage, mHandler);
 	}
 
 	@Override

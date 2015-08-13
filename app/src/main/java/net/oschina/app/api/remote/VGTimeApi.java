@@ -23,7 +23,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URLEncoder;
 
-public class OSChinaApi {
+public class VGTimeApi {
+
+    /**
+     * 检测初始图片
+     *
+     * @param clientType
+     * @param handler
+     */
+    public static void checkWelcomePic(String clientType,
+                             AsyncHttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.put("clientType", clientType);
+        String checkWelcomePicUrl = "version/startPic.json?";
+        ApiHttpClient.VGget(checkWelcomePicUrl, params, handler);
+    }
+
 
     /**
      * 登陆

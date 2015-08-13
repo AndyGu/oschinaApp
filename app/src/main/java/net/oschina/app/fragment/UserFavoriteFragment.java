@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.adapter.UserFavoriteAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.Favorite;
 import net.oschina.app.bean.FavoriteList;
@@ -44,8 +44,8 @@ public class UserFavoriteFragment extends BaseListFragment<Favorite> {
 
     @Override
     protected void sendRequestData() {
-	OSChinaApi.getFavoriteList(AppContext.getInstance().getLoginUid(),
-		mCatalog, mCurrentPage, mHandler);
+	VGTimeApi.getFavoriteList(AppContext.getInstance().getLoginUid(),
+			mCatalog, mCurrentPage, mHandler);
     }
 
     @Override

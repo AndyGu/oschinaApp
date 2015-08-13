@@ -17,7 +17,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseActivity;
 import net.oschina.app.team.bean.Team;
 import net.oschina.app.team.bean.TeamList;
@@ -159,7 +159,7 @@ public class TeamMainActivity extends BaseActivity implements ActionBar.OnNaviga
             //mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
         }
 
-        OSChinaApi.teamList(new AsyncHttpResponseHandler() {
+        VGTimeApi.teamList(new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
                 TeamList datas = XmlUtils.toBean(TeamList.class, arg2);

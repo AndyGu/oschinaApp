@@ -13,7 +13,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
 import net.oschina.app.adapter.ActiveAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.Active;
 import net.oschina.app.bean.ActiveList;
@@ -158,7 +158,7 @@ public class ActiveFragment extends BaseListFragment<Active> implements
 
     @Override
     protected void sendRequestData() {
-        OSChinaApi.getActiveList(AppContext.getInstance().getLoginUid(),
+        VGTimeApi.getActiveList(AppContext.getInstance().getLoginUid(),
                 mCatalog, mCurrentPage, mHandler);
     }
 

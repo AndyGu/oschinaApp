@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 
 import net.oschina.app.adapter.PostAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.Post;
 import net.oschina.app.bean.PostList;
@@ -46,7 +46,7 @@ public class PostsFragment extends BaseListFragment<Post> {
 
     @Override
     protected void sendRequestData() {
-        OSChinaApi.getPostList(mCatalog, mCurrentPage, mHandler);
+        VGTimeApi.getPostList(mCatalog, mCurrentPage, mHandler);
     }
 
     @Override

@@ -5,7 +5,7 @@ import android.text.TextUtils;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.CommonDetailFragment;
 import net.oschina.app.bean.Blog;
 import net.oschina.app.bean.BlogDetail;
@@ -31,7 +31,7 @@ public class BlogDetailFragment extends CommonDetailFragment<Blog> {
 
     @Override
     protected void sendRequestDataForNet() {
-        OSChinaApi.getBlogDetail(mId, mDetailHeandler);
+        VGTimeApi.getBlogDetail(mId, mDetailHeandler);
     }
 
     @Override
@@ -122,7 +122,7 @@ public class BlogDetailFragment extends CommonDetailFragment<Blog> {
             return;
         }
         showWaitDialog(R.string.progress_submit);
-        OSChinaApi.publicBlogComment(mId, AppContext.getInstance()
+        VGTimeApi.publicBlogComment(mId, AppContext.getInstance()
                 .getLoginUid(), str.toString(), mCommentHandler);
     }
 

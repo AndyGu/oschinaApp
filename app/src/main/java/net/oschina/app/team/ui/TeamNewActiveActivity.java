@@ -28,7 +28,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.api.remote.OSChinaTeamApi;
 import net.oschina.app.base.BaseActivity;
 import net.oschina.app.bean.Result;
@@ -516,12 +516,12 @@ public class TeamNewActiveActivity extends BaseActivity {
 
     private void tryToShowMetionUser() {
         if (mTeamMemberList == null || mTeamMemberList.isEmpty()) {
-            OSChinaApi.getTeamMemberList(mTeam.getId(),
+            VGTimeApi.getTeamMemberList(mTeam.getId(),
                     new AsyncHttpResponseHandler() {
 
                         @Override
                         public void onSuccess(int arg0, Header[] arg1,
-                                byte[] arg2) {
+                                              byte[] arg2) {
                             // TODO Auto-generated method stub
                             TeamMemberList memberList = XmlUtils.toBean(
                                     TeamMemberList.class, arg2);
@@ -536,7 +536,7 @@ public class TeamNewActiveActivity extends BaseActivity {
 
                         @Override
                         public void onFailure(int arg0, Header[] arg1,
-                                byte[] arg2, Throwable arg3) {
+                                              byte[] arg2, Throwable arg3) {
                             // TODO Auto-generated method stub
                             AppContext.showToast("获取团队成员失败");
                         }

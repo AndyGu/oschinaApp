@@ -6,7 +6,7 @@ import java.util.List;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.adapter.FriendAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.Entity;
 import net.oschina.app.bean.Friend;
@@ -107,7 +107,7 @@ public class FriendsFragment extends BaseListFragment<Friend> {
 
     @Override
     protected void sendRequestData() {
-        OSChinaApi.getFriendList(mUid, mCatalog, mCurrentPage, mHandler);
+        VGTimeApi.getFriendList(mUid, mCatalog, mCurrentPage, mHandler);
     }
 
     @Override

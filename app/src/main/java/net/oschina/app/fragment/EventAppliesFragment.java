@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.adapter.EventApplyAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.Apply;
 import net.oschina.app.bean.EventAppliesList;
@@ -57,7 +57,7 @@ public class EventAppliesFragment extends BaseListFragment<Apply> {
 
 	@Override
 	protected void sendRequestData() {
-		OSChinaApi.getEventApplies(mCatalog, mCurrentPage, mHandler);
+		VGTimeApi.getEventApplies(mCatalog, mCurrentPage, mHandler);
 	}
 
 	@Override

@@ -14,7 +14,7 @@ import net.oschina.app.AppContext;
 import net.oschina.app.R;
 import net.oschina.app.adapter.TweetAdapter;
 import net.oschina.app.api.OperationResponseHandler;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.Constants;
 import net.oschina.app.bean.Result;
@@ -140,11 +140,11 @@ public class TweetsFragment extends BaseListFragment<Tweet> implements
         if (bundle != null) {
             String str = bundle.getString("topic");
             if (str != null) {
-                OSChinaApi.getTweetTopicList(mCurrentPage, str, mHandler);
+                VGTimeApi.getTweetTopicList(mCurrentPage, str, mHandler);
                 return;
             }
         }
-        OSChinaApi.getTweetList(mCatalog, mCurrentPage, mHandler);
+        VGTimeApi.getTweetList(mCatalog, mCurrentPage, mHandler);
     }
 
     @Override
@@ -248,7 +248,7 @@ public class TweetsFragment extends BaseListFragment<Tweet> implements
         DialogHelp.getConfirmDialog(getActivity(), "是否删除该动弹?", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                OSChinaApi.deleteTweet(tweet.getAuthorid(), tweet
+                VGTimeApi.deleteTweet(tweet.getAuthorid(), tweet
                         .getId(), new DeleteTweetResponseHandler(tweet));
             }
         }).show();

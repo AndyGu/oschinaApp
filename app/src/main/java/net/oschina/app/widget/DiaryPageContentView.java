@@ -3,7 +3,7 @@ package net.oschina.app.widget;
 import java.util.List;
 
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseFragment;
 import net.oschina.app.cache.CacheManager;
 import net.oschina.app.team.adapter.TeamDiaryListAdapter;
@@ -107,7 +107,7 @@ public class DiaryPageContentView {
     }
 
     private void requestData(final boolean isFirst) {
-        OSChinaApi.getDiaryFromWhichWeek(teamId, year, week,
+        VGTimeApi.getDiaryFromWhichWeek(teamId, year, week,
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onStart() {
@@ -121,7 +121,7 @@ public class DiaryPageContentView {
 
                     @Override
                     public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-                            Throwable arg3) {
+                                          Throwable arg3) {
                         /* 网络异常 */
                         if (errorLayout != null) {
                             errorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
@@ -132,7 +132,7 @@ public class DiaryPageContentView {
 
                     @Override
                     public void onSuccess(int arg0, Header[] arg1,
-                            final byte[] arg2) {
+                                          final byte[] arg2) {
                         KJAsyncTask.execute(new Runnable() {
                             @Override
                             public void run() {

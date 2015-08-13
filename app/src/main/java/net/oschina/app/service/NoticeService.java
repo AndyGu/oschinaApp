@@ -6,7 +6,7 @@ import java.lang.ref.WeakReference;
 import net.oschina.app.AppConfig;
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.bean.Constants;
 import net.oschina.app.bean.Notice;
 import net.oschina.app.bean.NoticeDetail;
@@ -143,7 +143,7 @@ public class NoticeService extends Service {
     }
 
     private void clearNotice(int uid, int type) {
-        OSChinaApi.clearNotice(uid, type, mClearNoticeHandler);
+        VGTimeApi.clearNotice(uid, type, mClearNoticeHandler);
     }
 
     private int lastNotifiyCount;
@@ -279,7 +279,7 @@ public class NoticeService extends Service {
      * 请求是否有新通知
      */
     private void requestNotice() {
-        OSChinaApi.getNotices(mGetNoticeHandler);
+        VGTimeApi.getNotices(mGetNoticeHandler);
     }
 
     private static class ServiceStub extends INoticeService.Stub {

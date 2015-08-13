@@ -20,7 +20,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
 import net.oschina.app.api.OperationResponseHandler;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.api.remote.OSChinaTeamApi;
 import net.oschina.app.base.BeseHaveHeaderListFragment;
 import net.oschina.app.base.ListBaseAdapter;
@@ -200,7 +200,7 @@ public class TeamTweetDetailFragment extends
 
     @Override
     protected void requestDetailData(boolean isRefresh) {
-        OSChinaApi.getDynamicDetail(active.getId(), teamId, AppContext
+        VGTimeApi.getDynamicDetail(active.getId(), teamId, AppContext
                 .getInstance().getLoginUid(), mDetailHandler);
     }
 
@@ -290,7 +290,7 @@ public class TeamTweetDetailFragment extends
             return;
         }
         AppContext.showToastShort(R.string.deleting);
-        OSChinaApi.deleteComment(active.getId(), CommentList.CATALOG_TWEET,
+        VGTimeApi.deleteComment(active.getId(), CommentList.CATALOG_TWEET,
                 comment.getId(), comment.getAuthor().getId(),
                 new DeleteOperationResponseHandler(comment));
     }

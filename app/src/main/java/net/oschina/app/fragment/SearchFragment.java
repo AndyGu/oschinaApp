@@ -6,7 +6,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 
 import net.oschina.app.adapter.SearchAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.SearchList;
 import net.oschina.app.bean.SearchResult;
@@ -75,7 +75,7 @@ public class SearchFragment extends BaseListFragment<SearchResult> {
 
     @Override
     protected void sendRequestData() {
-        OSChinaApi.getSearchList(mCatalog, mSearch, mCurrentPage, mHandler);
+        VGTimeApi.getSearchList(mCatalog, mSearch, mCurrentPage, mHandler);
     }
 
     @Override

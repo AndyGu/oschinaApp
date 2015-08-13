@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.util.StringUtils;
 
 import org.apache.http.Header;
@@ -34,7 +34,7 @@ public class LogUploadService extends Service {
             e.printStackTrace();
         }
         if (!StringUtils.isEmpty(data)) {
-            OSChinaApi.uploadLog(data, new AsyncHttpResponseHandler() {
+            VGTimeApi.uploadLog(data, new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
                     log.delete();
@@ -43,7 +43,7 @@ public class LogUploadService extends Service {
 
                 @Override
                 public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-                        Throwable arg3) {
+                                      Throwable arg3) {
                     LogUploadService.this.stopSelf();
                 }
             });

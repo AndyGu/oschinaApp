@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 import net.oschina.app.R;
 import net.oschina.app.adapter.PostAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseActivity;
 import net.oschina.app.base.BaseListFragment;
 import net.oschina.app.bean.Post;
@@ -65,7 +65,7 @@ public class QuestionTagFragment extends BaseListFragment<Post> {
 
     @Override
     protected void sendRequestData() {
-        OSChinaApi.getPostListByTag(mTag, mCurrentPage, mHandler);
+        VGTimeApi.getPostListByTag(mTag, mCurrentPage, mHandler);
     }
 
     @Override

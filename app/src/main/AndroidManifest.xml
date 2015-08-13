@@ -173,6 +173,8 @@
 
         <service android:name="net.oschina.app.LogUploadService" />
 
+        <service android:name="net.oschina.app.WelcomePicService" />
+
         <service android:name="net.oschina.app.service.ServerTaskService" >
             <intent-filter>
                 <action android:name="net.oschina.app.ACTION_PUB_BLOG_COMMENT" />

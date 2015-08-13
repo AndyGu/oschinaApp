@@ -20,7 +20,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
 import net.oschina.app.adapter.ActiveAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseFragment;
 import net.oschina.app.base.ListBaseAdapter;
 import net.oschina.app.bean.Active;
@@ -229,7 +229,7 @@ public class UserCenterFragment extends BaseFragment implements
     }
 
     private void sendGetUserInfomation() {
-        OSChinaApi.getUserInformation(mUid, mHisUid, mHisName, mActivePage,
+        VGTimeApi.getUserInformation(mUid, mHisUid, mHisName, mActivePage,
                 mActiveHandler);
     }
 
@@ -354,7 +354,7 @@ public class UserCenterFragment extends BaseFragment implements
     }
 
     private void sendUpdateRelcationRequest(int ra) {
-        OSChinaApi.updateRelation(mUid, mHisUid, ra,
+        VGTimeApi.updateRelation(mUid, mHisUid, ra,
                 new AsyncHttpResponseHandler() {
 
                     @Override
@@ -364,58 +364,58 @@ public class UserCenterFragment extends BaseFragment implements
                                     new ByteArrayInputStream(arg2)).getResult();
                             if (result.OK()) {
                                 switch (mUser.getRelation()) {
-                                case User.RELATION_TYPE_BOTH:
-                                    mBtnFollowUser
-                                            .setCompoundDrawablesWithIntrinsicBounds(
-                                                    R.drawable.ic_add_follow,
-                                                    0, 0, 0);
-                                    mBtnFollowUser
-                                            .setText(R.string.follow_user);
-                                    mBtnFollowUser.setTextColor(getResources()
-                                            .getColor(R.color.white));
-                                    mBtnFollowUser
-                                            .setBackgroundResource(R.drawable.btn_small_green_selector);
-                                    mUser.setRelation(User.RELATION_TYPE_FANS_ME);
-                                    break;
-                                case User.RELATION_TYPE_FANS_HIM:
-                                    mBtnFollowUser
-                                            .setCompoundDrawablesWithIntrinsicBounds(
-                                                    R.drawable.ic_add_follow,
-                                                    0, 0, 0);
-                                    mBtnFollowUser
-                                            .setText(R.string.follow_user);
-                                    mBtnFollowUser.setTextColor(getResources()
-                                            .getColor(R.color.white));
-                                    mBtnFollowUser
-                                            .setBackgroundResource(R.drawable.btn_small_green_selector);
-                                    mUser.setRelation(User.RELATION_TYPE_NULL);
-                                    break;
-                                case User.RELATION_TYPE_FANS_ME:
-                                    mBtnFollowUser
-                                            .setCompoundDrawablesWithIntrinsicBounds(
-                                                    R.drawable.ic_followed, 0,
-                                                    0, 0);
-                                    mBtnFollowUser
-                                            .setText(R.string.follow_each_other);
-                                    mBtnFollowUser.setTextColor(getResources()
-                                            .getColor(R.color.black));
-                                    mBtnFollowUser
-                                            .setBackgroundResource(R.drawable.btn_small_white_selector);
-                                    mUser.setRelation(User.RELATION_TYPE_BOTH);
-                                    break;
-                                case User.RELATION_TYPE_NULL:
-                                    mBtnFollowUser
-                                            .setCompoundDrawablesWithIntrinsicBounds(
-                                                    R.drawable.ic_followed, 0,
-                                                    0, 0);
-                                    mBtnFollowUser
-                                            .setText(R.string.unfollow_user);
-                                    mBtnFollowUser.setTextColor(getResources()
-                                            .getColor(R.color.black));
-                                    mBtnFollowUser
-                                            .setBackgroundResource(R.drawable.btn_small_white_selector);
-                                    mUser.setRelation(User.RELATION_TYPE_FANS_HIM);
-                                    break;
+                                    case User.RELATION_TYPE_BOTH:
+                                        mBtnFollowUser
+                                                .setCompoundDrawablesWithIntrinsicBounds(
+                                                        R.drawable.ic_add_follow,
+                                                        0, 0, 0);
+                                        mBtnFollowUser
+                                                .setText(R.string.follow_user);
+                                        mBtnFollowUser.setTextColor(getResources()
+                                                .getColor(R.color.white));
+                                        mBtnFollowUser
+                                                .setBackgroundResource(R.drawable.btn_small_green_selector);
+                                        mUser.setRelation(User.RELATION_TYPE_FANS_ME);
+                                        break;
+                                    case User.RELATION_TYPE_FANS_HIM:
+                                        mBtnFollowUser
+                                                .setCompoundDrawablesWithIntrinsicBounds(
+                                                        R.drawable.ic_add_follow,
+                                                        0, 0, 0);
+                                        mBtnFollowUser
+                                                .setText(R.string.follow_user);
+                                        mBtnFollowUser.setTextColor(getResources()
+                                                .getColor(R.color.white));
+                                        mBtnFollowUser
+                                                .setBackgroundResource(R.drawable.btn_small_green_selector);
+                                        mUser.setRelation(User.RELATION_TYPE_NULL);
+                                        break;
+                                    case User.RELATION_TYPE_FANS_ME:
+                                        mBtnFollowUser
+                                                .setCompoundDrawablesWithIntrinsicBounds(
+                                                        R.drawable.ic_followed, 0,
+                                                        0, 0);
+                                        mBtnFollowUser
+                                                .setText(R.string.follow_each_other);
+                                        mBtnFollowUser.setTextColor(getResources()
+                                                .getColor(R.color.black));
+                                        mBtnFollowUser
+                                                .setBackgroundResource(R.drawable.btn_small_white_selector);
+                                        mUser.setRelation(User.RELATION_TYPE_BOTH);
+                                        break;
+                                    case User.RELATION_TYPE_NULL:
+                                        mBtnFollowUser
+                                                .setCompoundDrawablesWithIntrinsicBounds(
+                                                        R.drawable.ic_followed, 0,
+                                                        0, 0);
+                                        mBtnFollowUser
+                                                .setText(R.string.unfollow_user);
+                                        mBtnFollowUser.setTextColor(getResources()
+                                                .getColor(R.color.black));
+                                        mBtnFollowUser
+                                                .setBackgroundResource(R.drawable.btn_small_white_selector);
+                                        mUser.setRelation(User.RELATION_TYPE_FANS_HIM);
+                                        break;
                                 }
                                 int padding = (int) TDevice.dpToPixel(20);
                                 mBtnFollowUser.setPadding(padding, 0, padding,
@@ -430,7 +430,8 @@ public class UserCenterFragment extends BaseFragment implements
 
                     @Override
                     public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-                            Throwable arg3) {}
+                                          Throwable arg3) {
+                    }
                 });
     }
 

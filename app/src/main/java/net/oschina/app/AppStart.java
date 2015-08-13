@@ -5,6 +5,7 @@ import java.io.File;
 import net.oschina.app.ui.MainActivity;
 import net.oschina.app.util.TDevice;
 
+import org.kymjs.kjframe.KJBitmap;
 import org.kymjs.kjframe.http.KJAsyncTask;
 import org.kymjs.kjframe.utils.FileUtils;
 import org.kymjs.kjframe.utils.PreferenceHelper;
@@ -16,6 +17,10 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import butterknife.InjectView;
 
 /**
  * 应用启动界面
@@ -25,6 +30,15 @@ import android.view.animation.Animation.AnimationListener;
  * 
  */
 public class AppStart extends Activity {
+
+
+    @InjectView(R.id.app_start_view)
+    LinearLayout starLayout;
+
+    @InjectView(R.id.welcome_imageView)
+    ImageView welcome_imageView;
+
+    private KJBitmap kjb;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +52,11 @@ public class AppStart extends Activity {
 
         final View view = View.inflate(this, R.layout.app_start, null);
         setContentView(view);
+
+//        kjb = new KJBitmap();
+//        kjb.displayCacheOrDefult(welcome_imageView, "http://static.vgtime.com/photo/mobile/150714185007958.jpg",  R.drawable.welcome);
+
+
         // 渐变展示启动屏
         AlphaAnimation aa = new AlphaAnimation(0.5f, 1.0f);
         aa.setDuration(800);
@@ -87,6 +106,8 @@ public class AppStart extends Activity {
     private void redirectTo() {
         Intent uploadLog = new Intent(this, LogUploadService.class);
         startService(uploadLog);
+        Intent welcome = new Intent(this, WelcomePicService.class);
+        startService(welcome);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

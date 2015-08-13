@@ -6,7 +6,7 @@ import java.util.List;
 import net.oschina.app.R;
 import net.oschina.app.adapter.SoftwareAdapter;
 import net.oschina.app.adapter.SoftwareCatalogListAdapter;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseFragment;
 import net.oschina.app.base.ListBaseAdapter;
 import net.oschina.app.bean.Entity;
@@ -255,11 +255,11 @@ public class SoftwareCatalogListFragment extends BaseFragment implements
 	private void sendRequestCatalogData(AsyncHttpResponseHandler handler) {
 		mState = STATE_REFRESH;
 		mEmptyView.setErrorType(EmptyLayout.NETWORK_LOADING);
-		OSChinaApi.getSoftwareCatalogList(mCurrentTag, handler);
+		VGTimeApi.getSoftwareCatalogList(mCurrentTag, handler);
 	}
 
 	private void sendRequestTagData() {
-		OSChinaApi.getSoftwareTagList(mCurrentTag, mCurrentPage,
+		VGTimeApi.getSoftwareTagList(mCurrentTag, mCurrentPage,
 				mSoftwareHandler);
 	}
 

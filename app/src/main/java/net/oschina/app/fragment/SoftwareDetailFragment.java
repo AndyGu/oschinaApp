@@ -5,7 +5,7 @@ import android.text.TextUtils;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.CommonDetailFragment;
 import net.oschina.app.bean.FavoriteList;
 import net.oschina.app.bean.Software;
@@ -41,7 +41,7 @@ public class SoftwareDetailFragment extends CommonDetailFragment<Software> {
     protected void sendRequestDataForNet() {
         // 通过id来获取软件详情
         if (mId > 0) {
-            OSChinaApi.getSoftwareDetail(mId, mDetailHeandler);
+            VGTimeApi.getSoftwareDetail(mId, mDetailHeandler);
             return;
         }
 
@@ -49,7 +49,7 @@ public class SoftwareDetailFragment extends CommonDetailFragment<Software> {
             executeOnLoadDataError();
             return;
         }
-        OSChinaApi.getSoftwareDetail(mIden, mDetailHeandler);
+        VGTimeApi.getSoftwareDetail(mIden, mDetailHeandler);
     }
 
     @Override
@@ -149,7 +149,7 @@ public class SoftwareDetailFragment extends CommonDetailFragment<Software> {
         tweet.setAuthorid(AppContext.getInstance().getLoginUid());
         tweet.setBody(str.toString());
         showWaitDialog(R.string.progress_submit);
-        OSChinaApi.pubSoftWareTweet(tweet, mDetail.getId(), mCommentHandler);
+        VGTimeApi.pubSoftWareTweet(tweet, mDetail.getId(), mCommentHandler);
     }
 
     @Override

@@ -2,7 +2,7 @@ package net.oschina.app.fragment;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseFragment;
 import net.oschina.app.util.StringUtils;
 import net.oschina.app.util.TDevice;
@@ -61,7 +61,7 @@ public class FeedBackFragment extends BaseFragment {
                 data += mEtContact.getText() + "<br>";
                 data += TDevice.getVersionName() + "("
                         + TDevice.getVersionCode() + ")<br>";
-                OSChinaApi.feedback(data, new AsyncHttpResponseHandler() {
+                VGTimeApi.feedback(data, new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
                         AppContext.showToast("已收到你的建议，谢谢");
@@ -70,7 +70,7 @@ public class FeedBackFragment extends BaseFragment {
 
                     @Override
                     public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-                            Throwable arg3) {
+                                          Throwable arg3) {
                         AppContext.showToast("网络异常，请稍后重试");
                     }
                 });

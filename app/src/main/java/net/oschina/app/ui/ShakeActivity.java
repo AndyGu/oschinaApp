@@ -18,7 +18,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.R;
-import net.oschina.app.api.remote.OSChinaApi;
+import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.base.BaseActivity;
 import net.oschina.app.bean.ShakeObject;
 import net.oschina.app.util.KJAnimations;
@@ -107,7 +107,7 @@ public class ShakeActivity extends BaseActivity implements SensorEventListener {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                OSChinaApi.shake(new AsyncHttpResponseHandler() {
+                VGTimeApi.shake(new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
                         isRequest = false;
