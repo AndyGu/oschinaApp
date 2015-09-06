@@ -120,7 +120,7 @@ public class BeepManager implements MediaPlayer.OnCompletionListener, MediaPlaye
 	@Override
 	public synchronized boolean onError(MediaPlayer mp, int what, int extra) {
 		if (what == MediaPlayer.MEDIA_ERROR_SERVER_DIED) {
-			// we are finished, so put up an appropriate error toast if required
+			// we are finished, so putVG up an appropriate error toast if required
 			// and finish
 			activity.finish();
 		} else {

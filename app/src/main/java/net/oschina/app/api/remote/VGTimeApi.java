@@ -8,6 +8,7 @@ import com.loopj.android.http.RequestParams;
 import net.oschina.app.AppContext;
 import net.oschina.app.AppException;
 import net.oschina.app.api.ApiHttpClient;
+import net.oschina.app.api.VGApiHttpClient;
 import net.oschina.app.bean.Constants;
 import net.oschina.app.bean.EventApplyData;
 import net.oschina.app.bean.NewsList;
@@ -36,7 +37,7 @@ public class VGTimeApi {
         RequestParams params = new RequestParams();
         params.put("clientType", clientType);
         String checkWelcomePicUrl = "version/startPic.json?";
-        ApiHttpClient.VGget(checkWelcomePicUrl, params, handler);
+        VGApiHttpClient.getVG(checkWelcomePicUrl, params, handler);
     }
 
 
@@ -760,7 +761,7 @@ public class VGTimeApi {
             AsyncHttpResponseHandler handler) {
         RequestParams params = new RequestParams();
         // int uid = AppContext.getInstance().getLoginUid();
-        // params.put("uid", uid);
+        // params.putVG("uid", uid);
         params.put("teamid", team.getId());
         params.put("pageIndex", page);
         params.put("pageSize", 20);

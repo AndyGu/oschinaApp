@@ -8,6 +8,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.PersistentCookieStore;
 
 import net.oschina.app.api.ApiHttpClient;
+import net.oschina.app.api.VGApiHttpClient;
 import net.oschina.app.base.BaseApplication;
 import net.oschina.app.bean.Constants;
 import net.oschina.app.bean.User;
@@ -66,6 +67,10 @@ public class AppContext extends BaseApplication {
         client.setCookieStore(myCookieStore);
         ApiHttpClient.setHttpClient(client);
         ApiHttpClient.setCookie(ApiHttpClient.getCookie(this));
+
+
+        VGApiHttpClient.setVGHttpClient(client);
+        VGApiHttpClient.setVGCookie(ApiHttpClient.getCookie(this));
 
         // Log控制器
         KJLoger.openDebutLog(true);

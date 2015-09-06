@@ -59,21 +59,8 @@ public class ApiHttpClient {
                 .append(params).toString());
     }
 
-    public static void VGget(String partUrl, RequestParams params,
-                           AsyncHttpResponseHandler handler) {
-        client.get(getVGAbsoluteApiUrl(partUrl), params, handler);
-        log(new StringBuilder("GET ").append(partUrl).append("&")
-                .append(params).toString());
-    }
-
     public static String getAbsoluteApiUrl(String partUrl) {
         String url = String.format(API_URL, partUrl);
-        Log.d("BASE_CLIENT", "request:" + url);
-        return url;
-    }
-
-    public static String getVGAbsoluteApiUrl(String partUrl) {
-        String url = String.format(VGTIME_HOST, partUrl);
         Log.d("BASE_CLIENT", "request:" + url);
         return url;
     }

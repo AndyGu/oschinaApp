@@ -35,9 +35,9 @@ public class WelcomePicService extends Service {
                 WelcomeBean bean= JSON.parseObject(new String(arg2), WelcomeBean.class);
                 if(bean.getStatus() != 0){
 //                    DiskLruCacheUtil.saveObject(WelcomePicService.this, arg2, "welcome");
-                    final String filePath = AppConfig.DEFAULT_SAVE_IMAGE_PATH
-                            + "welcomePic.jpg";
-                    kjb.saveImage(WelcomePicService.this, bean.getData().getImg(), filePath);
+//                    final String filePath = AppConfig.DEFAULT_SAVE_IMAGE_PATH
+//                            + "welcomePic.jpg";
+//                    kjb.saveImage(WelcomePicService.this, bean.getData().getImg(), filePath);
                 }
 
                 WelcomePicService.this.stopSelf();
@@ -46,6 +46,7 @@ public class WelcomePicService extends Service {
             @Override
             public void onFailure(int arg0, Header[] arg1, byte[] arg2,
                                   Throwable arg3) {
+                Log.e("onFailure",new String(arg2));
                 WelcomePicService.this.stopSelf();
             }
         });
