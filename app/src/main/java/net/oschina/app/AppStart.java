@@ -5,21 +5,36 @@ import java.io.File;
 import net.oschina.app.ui.MainActivity;
 import net.oschina.app.util.TDevice;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import com.baidu.location.BDLocation;
+
 import org.kymjs.kjframe.KJBitmap;
 import org.kymjs.kjframe.http.KJAsyncTask;
 import org.kymjs.kjframe.utils.FileUtils;
 import org.kymjs.kjframe.utils.PreferenceHelper;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
@@ -35,11 +50,9 @@ public class AppStart extends Activity {
     @InjectView(R.id.app_start_view)
     LinearLayout starLayout;
 
-    @InjectView(R.id.welcome_imageView)
-    ImageView welcome_imageView;
-
     private KJBitmap kjb;
 
+    @SuppressLint("NewApi")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +65,21 @@ public class AppStart extends Activity {
 
         final View view = View.inflate(this, R.layout.app_start, null);
         setContentView(view);
+        ButterKnife.inject(this, view);
 
-//        kjb = new KJBitmap();
-//        kjb.displayCacheOrDefult(welcome_imageView, "http://static.vgtime.com/photo/mobile/150714185007958.jpg",  R.drawable.welcome);
+        String filePath = AppConfig.DEFAULT_SAVE_IMAGE_PATH
+                + AppContext.get("welcomepic_name","default");
+        File file  = new File(filePath);
+
+        if(file.exists()){
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 2;
+            Bitmap bmp = BitmapFactory.decodeFile(filePath, options);
+            Drawable drawable= new BitmapDrawable(bmp);
+            view.setBackground(drawable);
+        }else{
+            view.setBackgroundResource(R.drawable.welcome);
+        }
 
 
         // 渐变展示启动屏

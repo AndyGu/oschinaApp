@@ -17,7 +17,7 @@ import java.util.Locale;
 public class VGApiHttpClient {
 
     public final static String VGTIME_HOST = "http://121.40.207.181/game_time/api/game/%s";
-
+    public final static String HOST = "www.oschina.net";
     private static String API_URL = "http://www.oschina.net/%s";
 //     public final static String HOST = "192.168.1.11";
 //     private static String API_URL = "http://192.168.1.11/%s";
@@ -116,7 +116,7 @@ public class VGApiHttpClient {
     public static void setVGHttpClient(AsyncHttpClient c) {
         client = c;
         client.addHeader("Accept-Language", Locale.getDefault().toString());
-//        client.addHeader("Host", VGTIME_HOST);
+        client.addHeader("Host", HOST);
         client.addHeader("Connection", "Keep-Alive");
         client.getHttpClient().getParams()
                 .setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);

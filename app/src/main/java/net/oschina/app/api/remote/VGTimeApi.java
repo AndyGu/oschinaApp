@@ -36,7 +36,7 @@ public class VGTimeApi {
                              AsyncHttpResponseHandler handler) {
         RequestParams params = new RequestParams();
         params.put("clientType", clientType);
-        String checkWelcomePicUrl = "version/startPic.json?";
+        String checkWelcomePicUrl = "version/startPic.json";
         VGApiHttpClient.getVG(checkWelcomePicUrl, params, handler);
     }
 
