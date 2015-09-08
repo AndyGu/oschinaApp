@@ -26,9 +26,7 @@ public class WelcomePicService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        String  clientType = "1"; // 1 for android
-
-        VGTimeApi.checkWelcomePic(clientType, new AsyncHttpResponseHandler() {
+        VGTimeApi.checkWelcomePic(new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
                 KJBitmap kjb = new KJBitmap();

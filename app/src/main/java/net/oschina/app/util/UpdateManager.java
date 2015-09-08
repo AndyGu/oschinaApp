@@ -5,12 +5,16 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 
+import com.alibaba.fastjson.JSON;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import net.oschina.app.AppContext;
 import net.oschina.app.api.remote.VGTimeApi;
 import net.oschina.app.bean.Update;
+import net.oschina.app.bean.UpdateBean;
+import net.oschina.app.bean.WelcomeBean;
 
 import org.apache.http.Header;
 
@@ -25,13 +29,17 @@ import java.io.ByteArrayInputStream;
 
 public class UpdateManager {
 
-    private Update mUpdate;
+//    private Update mUpdate;
+    private UpdateBean mUpdateBean;
 
     private Context mContext;
 
     private boolean isShow = false;
 
     private ProgressDialog _waitDialog;
+
+    private int curVersionCode;
+    private String curVersionName;
 
     private AsyncHttpResponseHandler mCheckUpdateHandle = new AsyncHttpResponseHandler() {
 
@@ -47,8 +55,10 @@ public class UpdateManager {
         @Override
         public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
             hideCheckDialog();
-            mUpdate = XmlUtils.toBean(Update.class,
-                    new ByteArrayInputStream(arg2));
+//            mUpdateBean = XmlUtils.toBean(Update.class,
+//                    new ByteArrayInputStream(arg2));
+
+            mUpdateBean= JSON.parseObject(new String(arg2), UpdateBean.class);
 
             onFinshCheck();
         }
@@ -57,17 +67,24 @@ public class UpdateManager {
     public UpdateManager(Context context, boolean isShow) {
         this.mContext = context;
         this.isShow = isShow;
+
+        curVersionCode = TDevice.getVersionCode(AppContext
+                .getInstance().getPackageName());
+
+        curVersionName = TDevice.getVersionName();
     }
 
     public boolean haveNew() {
-        if (this.mUpdate == null) {
+        if (this.mUpdateBean == null) {
             return false;
         }
         boolean haveNew = false;
-        int curVersionCode = TDevice.getVersionCode(AppContext
-                .getInstance().getPackageName());
-        if (curVersionCode < mUpdate.getUpdate().getAndroid()
-                .getVersionCode()) {
+
+//        应该在此比较VersionCode 接口需调整
+//        if (curVersionCode < mUpdateBean.getData().getVerName()) {
+//            haveNew = true;
+//        }
+        if(mUpdateBean.getData().getComp() == 1){
             haveNew = true;
         }
         return haveNew;
@@ -77,7 +94,7 @@ public class UpdateManager {
         if (isShow) {
             showCheckDialog();
         }
-        VGTimeApi.checkUpdate(mCheckUpdateHandle);
+        VGTimeApi.checkUpdate(String.valueOf(curVersionCode), mCheckUpdateHandle);
     }
 
     private void onFinshCheck() {
@@ -104,13 +121,22 @@ public class UpdateManager {
     }
 
     private void showUpdateInfo() {
-        if (mUpdate == null) {
+        if (mUpdateBean == null) {
             return;
         }
-        AlertDialog.Builder dialog = DialogHelp.getConfirmDialog(mContext, mUpdate.getUpdate().getAndroid().getUpdateLog(), new DialogInterface.OnClickListener() {
+//        接口中应加入升级日志
+//        AlertDialog.Builder dialog = DialogHelp.getConfirmDialog(mContext, mUpdate.getUpdate().getAndroid().getUpdateLog(), new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                UIHelper.openDownLoadService(mContext, mUpdate.getUpdate().getAndroid().getDownloadUrl(), mUpdate.getUpdate().getAndroid().getVersionName());
+//            }
+//        });
+
+        AlertDialog.Builder dialog = DialogHelp.getConfirmDialog(mContext, mUpdateBean.getData().getContent(), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                UIHelper.openDownLoadService(mContext, mUpdate.getUpdate().getAndroid().getDownloadUrl(), mUpdate.getUpdate().getAndroid().getVersionName());
+//                接口中的下载链接不可用
+//                UIHelper.openDownLoadService(mContext, mUpdateBean.getData().getUrl(), mUpdateBean.getData().getVerName());
             }
         });
         dialog.setTitle("发现新版本");

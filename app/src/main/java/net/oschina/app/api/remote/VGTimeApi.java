@@ -26,16 +26,15 @@ import java.net.URLEncoder;
 
 public class VGTimeApi {
 
+    final static String CLIENT_TYPE = "1";
     /**
      * 检测初始图片
      *
-     * @param clientType
      * @param handler
      */
-    public static void checkWelcomePic(String clientType,
-                             AsyncHttpResponseHandler handler) {
+    public static void checkWelcomePic(AsyncHttpResponseHandler handler) {
         RequestParams params = new RequestParams();
-        params.put("clientType", clientType);
+        params.put("clientType", CLIENT_TYPE);
         String checkWelcomePicUrl = "version/startPic.json";
         VGApiHttpClient.getVG(checkWelcomePicUrl, params, handler);
     }
@@ -610,8 +609,12 @@ public class VGTimeApi {
         ApiHttpClient.get("action/api/software_tweet_list", params, handler);
     }
 
-    public static void checkUpdate(AsyncHttpResponseHandler handler) {
-        ApiHttpClient.get("MobileAppVersion.xml", handler);
+    public static void checkUpdate(String versionName, AsyncHttpResponseHandler handler) {
+//        ApiHttpClient.get("MobileAppVersion.xml", handler);
+        RequestParams params = new RequestParams();
+        params.put("clientType", CLIENT_TYPE);
+        params.put("versionName", versionName);
+        VGApiHttpClient.getVG("version/version.json?", params, handler);
     }
 
     /**
