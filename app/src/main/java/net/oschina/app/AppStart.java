@@ -3,37 +3,25 @@ package net.oschina.app;
 import java.io.File;
 
 import net.oschina.app.ui.MainActivity;
+import net.oschina.app.ui.TestActivity;
 import net.oschina.app.util.TDevice;
-
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import com.baidu.location.BDLocation;
-
 import org.kymjs.kjframe.KJBitmap;
 import org.kymjs.kjframe.http.KJAsyncTask;
 import org.kymjs.kjframe.utils.FileUtils;
 import org.kymjs.kjframe.utils.PreferenceHelper;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -134,6 +122,7 @@ public class AppStart extends Activity {
         Intent welcome = new Intent(this, WelcomePicService.class);
         startService(welcome);
         Intent intent = new Intent(this, MainActivity.class);
+//        Intent intent = new Intent(this, TestActivity.class);
         startActivity(intent);
         finish();
     }
