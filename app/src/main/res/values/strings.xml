@@ -303,4 +303,8 @@
     <string name="str_team_select_team">选择团队</string>
 	
     <string name="str_team_my_issue">我的任务</string>
+    <string name="title_activity_test">TestActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>
