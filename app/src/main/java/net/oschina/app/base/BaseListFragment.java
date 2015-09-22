@@ -127,9 +127,11 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
             mAdapter = getListAdapter();
             mListView.setAdapter(mAdapter);
 
+//            根据类型确定error样式
             if (requestDataIfViewCreated()) {
                 mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
                 mState = STATE_NONE;
+//                初始化时请求数据
                 requestData(false);
             } else {
                 mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
@@ -167,6 +169,7 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
         setSwipeRefreshLoadingState();
         mCurrentPage = 0;
         mState = STATE_REFRESH;
+//        刷新请求
         requestData(true);
     }
 
@@ -202,8 +205,7 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
 
     /***
      * 获取列表数据
-     * 
-     * 
+     *
      * @author 火蚁 2015-2-9 下午3:16:12
      * 
      * @return void
@@ -230,15 +232,17 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
      */
     protected boolean isReadCacheData(boolean refresh) {
         String key = getCacheKey();
+//        无网络 直接返回true 表示需要读取缓存数据
         if (!TDevice.hasInternet()) {
             return true;
         }
-        // 第一页若不是主动刷新，缓存存在，优先取缓存的
+
+        // 有网情况下 第一页若不是主动刷新，缓存存在，优先取缓存的
         if (CacheManager.isExistDataCache(getActivity(), key) && !refresh
                 && mCurrentPage == 0) {
             return true;
         }
-        // 其他页数的，缓存存在以及还没有失效，优先取缓存的
+        // 有网情况下 其他页数的，缓存存在以及还没有失效，优先取缓存的
         if (CacheManager.isExistDataCache(getActivity(), key)
                 && !CacheManager.isCacheDataFailure(getActivity(), key)
                 && mCurrentPage != 0) {
@@ -248,7 +252,11 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
         return false;
     }
 
-    // 是否到时间去刷新数据了
+    /***
+     * 判断是否超过设定时间 可以自动去刷新数据了
+     *
+     * @return boolean
+     */
     private boolean onTimeRefresh() {
         String lastRefreshTime = AppContext.getLastRefreshTime(getCacheKey());
         String currTime = StringUtils.getCurTimeStr();
@@ -280,6 +288,9 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
 
     protected void sendRequestData() {}
 
+    /***
+     * 加载cache
+     */
     private void readCacheData(String cacheKey) {
         cancelReadCacheTask();
         mCacheTask = new CacheTask(getActivity()).execute(cacheKey);
@@ -474,6 +485,7 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
         }
     }
 
+    /** 解析列表接口返回的数据 */
     private void executeParserTask(byte[] data) {
         cancelParserTask();
         mParserTask = new ParserTask(data);
@@ -502,6 +514,7 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
             try {
                 ListEntity<T> data = parseList(new ByteArrayInputStream(
                         reponseData));
+//              保存cache
                 new SaveCacheTask(getActivity(), data, getCacheKey()).execute();
                 list = data.getList();
                 if (list == null) {
