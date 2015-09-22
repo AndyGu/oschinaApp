@@ -1,7 +1,5 @@
 package net.oschina.app.bean;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-
 import java.io.Serializable;
 
 /**
@@ -13,8 +11,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class UpdateBean implements Serializable {
 	private int status;
-	private String error;
-	private UpdateData data;
+	private UpdateData date;
 
 	public int getStatus() {
 		return status;
@@ -24,19 +21,11 @@ public class UpdateBean implements Serializable {
 		this.status = status;
 	}
 
-	public String getError() {
-		return error;
+	public UpdateData getDate() {
+		return date;
 	}
 
-	public void setError(String error) {
-		this.error = error;
-	}
-
-	public UpdateData getData() {
-		return data;
-	}
-
-	public void setData(UpdateData data) {
-		this.data = data;
+	public void setDate(UpdateData date) {
+		this.date = date;
 	}
 }

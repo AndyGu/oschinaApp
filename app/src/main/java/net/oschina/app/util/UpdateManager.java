@@ -81,10 +81,10 @@ public class UpdateManager {
         boolean haveNew = false;
 
 //        应该在此比较VersionCode 接口需调整
-//        if (curVersionCode < mUpdateBean.getData().getVerName()) {
+//        if (curVersionCode < mUpdateBean.getDate().getVerName()) {
 //            haveNew = true;
 //        }
-        if(mUpdateBean.getData().getComp() == 1){
+        if(mUpdateBean.getDate().getComp() == 1){
             haveNew = true;
         }
         return haveNew;
@@ -132,7 +132,7 @@ public class UpdateManager {
 //            }
 //        });
 
-        AlertDialog.Builder dialog = DialogHelp.getConfirmDialog(mContext, mUpdateBean.getData().getContent(), new DialogInterface.OnClickListener() {
+        AlertDialog.Builder dialog = DialogHelp.getConfirmDialog(mContext, mUpdateBean.getDate().getContent(), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 //                接口中的下载链接不可用
