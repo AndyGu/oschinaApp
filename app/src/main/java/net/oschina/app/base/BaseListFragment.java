@@ -393,13 +393,14 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
             mAdapter.clear();
         }
 
+        //如果data中的数据条目的id 已经存在在当前列表，删除之
         for (int i = 0; i < data.size(); i++) {
             if (compareTo(mAdapter.getData(), data.get(i))) {
                 data.remove(i);
                 i--;
             }
         }
-        int adapterState = ListBaseAdapter.STATE_EMPTY_ITEM;
+        int adapterState ;
         if ((mAdapter.getCount() + data.size()) == 0) {
             adapterState = ListBaseAdapter.STATE_EMPTY_ITEM;
         } else if (data.size() == 0
@@ -433,6 +434,10 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
         return true;
     }
 
+    /**
+     * 判断请求的列表数据的当前项 是否存在在 当前展示的列表中
+     *
+     */
     protected boolean compareTo(List<? extends Entity> data, Entity enity) {
         int s = data.size();
         if (enity != null) {
